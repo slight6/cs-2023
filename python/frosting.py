@@ -49,6 +49,38 @@ def calculate(diameter, height, layers):
 
     """
 
+    """
+    result = lc.setlocale(lc.LC_ALL, '')
+    if result == 'C':
+        print('Set locale on my own')
+        lc.setlocale(lc.LC_ALL, 'en_US')
+    """
+
+    """
+    try:
+        lc.setlocale(lc.LC_ALL, 'de')  # try: 'de' or 'uk'
+    except lc.Error:
+        print('unable to set locale')
+    """
+
+    """
+    try:
+        lc.setlocale(lc.LC_ALL, '')
+    except lc.Error:
+        print('unable to set locale')
+
+    dec_balance = Decimal(balance).quantize(Decimal('.01'), ROUND_HALF_UP)
+    dec_apr = Decimal(apr / 100).quantize(Decimal('.01'), ROUND_HALF_UP)
+    dec_payment = Decimal(payment).quantize(Decimal('.01'), ROUND_HALF_UP)
+
+        
+
+    print(f'Interest Paid: {lc.currency(dec_interest, grouping = True):>15}', )
+    print(f'Balance:       {lc.currency(new_balance, grouping = True):>15}')
+    """
+
+    price = Decimal().quantize(Decimal('.01'), ROUND_HALF_UP)
+
     # Calculate the area of the top of the cake
     area_top = math.pi * (diameter / 2) ** 2
 
@@ -65,8 +97,9 @@ def calculate(diameter, height, layers):
     price = num_tubs * 1.25
 
     # Output the number of tubs and total price of the frosting
+    
     print(f'Num tubs: {num_tubs:>5}')
-    print(f'Price: {price:>8}')
+    print(f'Price: {lc.currency(price, grouping = True):>8}')
 
 def main():
     """Accept input for the calculate function
