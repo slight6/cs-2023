@@ -17,11 +17,73 @@ If that is not available, then set the locale to ‘en-US’
 Output the number of tubs and total price of the frosting
 On one line output, ‘Num tubs: ‘, followed by the number of tubs right-justified in 5 spaces
 On the next line, output ‘Price: ‘, followed by the total price printed as currency right justifies in 8 spaces
+Diameter? 6
+
+Height? 3
+
+Layers? 2
+
+Num tubs:     2
+Price:    $2.50
 """
 
 import math
-import locale
+import locale as lc
+from decimal import Decimal, ROUND_HALF_UP
+
 
 # Set locale to user's default locale
-locale.setlocale(locale.LC_ALL, '')
+lc.setlocale(lc.LC_ALL, '')
 
+print(math.pi)
+
+def calculate(diameter, height, layers):
+    """Calculate the total area and amount of frosting needed.
+    
+        Args:
+            diameter (float): Diameter of the cake
+            height (float): Height of the cake
+            layers (int): Number of layers of the cake
+        Returns:
+            None
+
+    """
+
+    # Calculate the area of the top of the cake
+    area_top = math.pi * (diameter / 2) ** 2
+
+    # Calculate the area of the side of the cake
+    area_side = math.pi * diameter * height
+
+    # Calculate the total area of the cake
+    total_area = area_top * layers + area_side
+
+    # Calculate the number of tubs needed
+    num_tubs = math.ceil(total_area / 60)
+
+    # Calculate the total price of the frosting
+    price = num_tubs * 1.25
+
+    # Output the number of tubs and total price of the frosting
+    print(f'Num tubs: {num_tubs:>5}')
+    print(f'Price: {price:>8}')
+
+def main():
+    """Accept input for the calculate function
+
+        Args:
+            None
+        Returns:
+            None
+
+    """
+    diameter = float(input('Diameter? '))
+    print()
+    height = float(input('Height? '))
+    print()
+    layers = int(input('Layers? '))
+    print()
+    calculate(diameter, height, layers)
+
+if __name__ == '__main__':
+    main()
