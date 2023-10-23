@@ -36,6 +36,8 @@ def calculate(diameter, height, layers):
     
     print(f'Num tubs: {num_tubs:>5}')
     print(f'Price: {lc.currency(price, grouping = True):>8}')
+    # Have to put a print statement here to pass the test. I don't know why.
+    print()
 
 def main():
     """Begin program and accept input for the calculate function
